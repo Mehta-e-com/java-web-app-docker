@@ -1,0 +1,25 @@
+version: 3.1
+services:
+  java-web-app
+     image: mehtaayush68/java-web-app:1
+	 container_name: tomcat
+	 ports:
+	  - 8143:8080
+	 deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 20s
+      restart_policy:
+        condition: on-failure
+volumes:
+  data:
+    #external: true
+  data-bkp:
+    #external: true
+    
+networks:
+  default:
+    external:
+      name: customoverlay
+		
